@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackSharp", "HackSharp\HackSharp.csproj", "{1DA3E0F6-1003-48EC-90F1-BD5E8FE6F396}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maps", "Map\Maps.csproj", "{6C3803B9-39FF-4938-8FB1-F8A03658135D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{3591CC04-B4FE-4671-B948-9A11E29FB126}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renderer", "MapRenderer\Renderer.csproj", "{3320A147-244A-4710-90FB-A20671FEDE59}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DA3E0F6-1003-48EC-90F1-BD5E8FE6F396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DA3E0F6-1003-48EC-90F1-BD5E8FE6F396}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DA3E0F6-1003-48EC-90F1-BD5E8FE6F396}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DA3E0F6-1003-48EC-90F1-BD5E8FE6F396}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C3803B9-39FF-4938-8FB1-F8A03658135D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C3803B9-39FF-4938-8FB1-F8A03658135D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C3803B9-39FF-4938-8FB1-F8A03658135D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C3803B9-39FF-4938-8FB1-F8A03658135D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3591CC04-B4FE-4671-B948-9A11E29FB126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3591CC04-B4FE-4671-B948-9A11E29FB126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3591CC04-B4FE-4671-B948-9A11E29FB126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3591CC04-B4FE-4671-B948-9A11E29FB126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3320A147-244A-4710-90FB-A20671FEDE59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3320A147-244A-4710-90FB-A20671FEDE59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3320A147-244A-4710-90FB-A20671FEDE59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3320A147-244A-4710-90FB-A20671FEDE59}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+EndGlobal
