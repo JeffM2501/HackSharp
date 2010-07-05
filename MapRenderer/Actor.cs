@@ -12,7 +12,7 @@ namespace Renderer
 {
     public class ActorRenderFactory
     {
-        protected static Dictionary<Type, ActorRenderer> RenderCache = new Dictionary<Type, ItemRenderer>();
+        protected static Dictionary<Type, ActorRenderer> RenderCache = new Dictionary<Type, ActorRenderer>();
         protected static Dictionary<Type, Type> Renderers = new Dictionary<Type, Type>();
 
         public static void LoadRenderers(Assembly assembly)
@@ -64,7 +64,7 @@ namespace Renderer
 
         public virtual Type RenderType()
         {
-            return Actor;
+            return typeof(Actor);
         }
 
         public virtual Image GetImage(Actor item)
@@ -91,7 +91,7 @@ namespace Renderer
     {
         public override Type RenderType()
         {
-            return AnimatedActor;
+            return typeof(AnimatedActor);
         }
 
         static Dictionary<string, Image> ImageCache = new Dictionary<string, Image>();
@@ -102,7 +102,6 @@ namespace Renderer
             if (actor == null)
                 return null;
 
-            actor.TextureDir;
             return base.GetImage(item);
         }
     }

@@ -66,7 +66,7 @@ namespace Renderer
 
         public virtual Type RenderType()
         {
-            return ItemType;
+            return typeof(ItemType);
         }
 
         public virtual Image GetImage (ItemType item)
