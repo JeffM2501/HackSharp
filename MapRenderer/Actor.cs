@@ -78,7 +78,12 @@ namespace Renderer
         public enum AnimSequence
         {
             Standing,
-
+            Moving,
+            Attacking,
+            Defending,
+            Ranged,
+            Dying,
+            Dead,
         }
     }
 
