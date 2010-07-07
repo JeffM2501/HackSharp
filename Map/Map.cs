@@ -41,7 +41,11 @@ namespace Maps
         public Object Tag = null;
     }
 
-    public class Square
+    public class TileAttribute
+    {
+    }
+
+    public class Tile
     {
         public Point Location = Point.Empty;
         public Dictionary<Direction, int> Walls = new Dictionary<Direction, int>();
@@ -49,12 +53,31 @@ namespace Maps
         public List<Item> Contents = new List<Item>();
         public Object Renderer = null;
         public Object Tag = null;
+
+        public enum TileType
+        {
+            Open,
+            Blocked,
+            OpenDoor,
+            ClosedDoor,
+            Unknown,
+        }
+
+        public TileType Type = TileType.Unknown;
+
+        public List<TileAttribute> Attributes = new List<TileAttribute>();
+    }
+
+    public class Room
+    {
+        public List<Tile> Tiles = new List<Tile>();
+        public string Name = string.Empty;
     }
 
     public class Actor
     {
         public Point Location = Point.Empty;
-        public Square MapLocation = null;
+        public Tile MapLocation = null;
         public Object Renderer = null;
         public Object Tag = null;
     }
@@ -77,7 +100,8 @@ namespace Maps
     public class Map
     {
         public Dictionary<int, Surface> Surfaces = new Dictionary<int, Surface>();
-        public Square[][] Squares = null;
+
+        public List<Room> Rooms = new List<Room>();
 
         public List<ItemType> Objects = new List<ItemType>();
         public List<Actor> Actors = new List<Actor>();
