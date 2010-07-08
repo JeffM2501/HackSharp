@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textures", "Textures\Textur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageToMap", "ImageToMap\ImageToMap.csproj", "{4439A7A1-EF66-4DA3-A99D-B9B86AC73FA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapGen", "MapGen\MapGen.csproj", "{E3E774A8-870A-4596-8003-AC18E1B8D531}"
+EndProject
 Global
 	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
 		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
@@ -46,6 +48,10 @@ Global
 		{4439A7A1-EF66-4DA3-A99D-B9B86AC73FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4439A7A1-EF66-4DA3-A99D-B9B86AC73FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4439A7A1-EF66-4DA3-A99D-B9B86AC73FA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3E774A8-870A-4596-8003-AC18E1B8D531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3E774A8-870A-4596-8003-AC18E1B8D531}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3E774A8-870A-4596-8003-AC18E1B8D531}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3E774A8-870A-4596-8003-AC18E1B8D531}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

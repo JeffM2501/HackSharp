@@ -105,5 +105,13 @@ namespace Maps
 
         public List<ItemType> Objects = new List<ItemType>();
         public List<Actor> Actors = new List<Actor>();
+
+        public void Clear ()
+        {
+            Surfaces.Clear();
+            Rooms.Clear();
+            Objects.Clear();
+            Actors.Clear();
+        }
     }
 }

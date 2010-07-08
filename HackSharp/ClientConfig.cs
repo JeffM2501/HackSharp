@@ -20,6 +20,12 @@ namespace HackSharp
             string dirName = Path.GetFileName(Assembly.GetEntryAssembly().FullName);
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), dirName);
         }
+
+        public static void CreateAppDir()
+        {
+            Directory.CreateDirectory(GetAppDataDir());
+        }
+
         public static ClientConfig Config = new ClientConfig();
 
         public static void Load ()
@@ -39,6 +45,8 @@ namespace HackSharp
             XmlSerializer xml = new XmlSerializer(typeof(ClientConfig));
             if (ConfigFile.Exists)
                 ConfigFile.Delete();
+            else
+                CreateAppDir();
 
             Stream fs = ConfigFile.OpenWrite();
             xml.Serialize(fs, Config);
