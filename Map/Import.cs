@@ -19,7 +19,7 @@ namespace Maps
             if (y >= bitmap.Height || y < 0)
                 return Color.Black;
 
-            return bitmap.GetPixel(x,y);
+            return bitmap.GetPixel(x, bitmap.Height - y -1);
         }
 
         protected static bool PosIsTile( int x, int y, Bitmap bitmap)
@@ -38,16 +38,15 @@ namespace Maps
             if (!PosIsTile(pos.X - 1, pos.Y, bitmap))
                 dirs.Add(Direction.West);
            
-            if (!PosIsTile(pos.X, pos.Y + 1, bitmap))
+            if (!PosIsTile(pos.X, pos.Y - 1, bitmap))
                 dirs.Add(Direction.South);
 
-            if (!PosIsTile(pos.X, pos.Y - 1, bitmap))
+            if (!PosIsTile(pos.X, pos.Y + 1, bitmap))
                 dirs.Add(Direction.North);
 
             return dirs.ToArray();
         }
 
-        
         protected static bool IsDifferentRoom ( int x, int y, Bitmap bitmap, Color thisColor )
         {
             Color c = GetTileColor(x,y,bitmap);
@@ -99,7 +98,7 @@ namespace Maps
                 {
                     if (PosIsTile(x, y, bitmap))
                     {
-                        Color c = bitmap.GetPixel(x, y);
+                        Color c = bitmap.GetPixel(x, bitmap.Height - y- 1);
 
                         Room room = null;
 
@@ -112,7 +111,7 @@ namespace Maps
                         }
 
                         Tile tile = new Tile();
-                        tile.Location = new Point(x, y);
+                        tile.Location = new Point(x,y);
                         if (IsDoor(tile.Location, bitmap))
                             tile.Type = Tile.TileType.ClosedDoor;
                         else

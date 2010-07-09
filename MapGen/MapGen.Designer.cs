@@ -31,9 +31,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MapViewBox = new System.Windows.Forms.PictureBox();
-            this.fromImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.heroQuestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MapViewBox = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapViewBox)).BeginInit();
             this.SuspendLayout();
@@ -62,8 +62,22 @@
             this.generateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.heroQuestToolStripMenuItem});
             this.generateToolStripMenuItem.Name = "generateToolStripMenuItem";
-            this.generateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.generateToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.generateToolStripMenuItem.Text = "Generate";
+            // 
+            // heroQuestToolStripMenuItem
+            // 
+            this.heroQuestToolStripMenuItem.Name = "heroQuestToolStripMenuItem";
+            this.heroQuestToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.heroQuestToolStripMenuItem.Text = "Hero Quest";
+            this.heroQuestToolStripMenuItem.Click += new System.EventHandler(this.heroQuestToolStripMenuItem_Click);
+            // 
+            // fromImageToolStripMenuItem
+            // 
+            this.fromImageToolStripMenuItem.Name = "fromImageToolStripMenuItem";
+            this.fromImageToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.fromImageToolStripMenuItem.Text = "From Image";
+            this.fromImageToolStripMenuItem.Click += new System.EventHandler(this.fromImageToolStripMenuItem_Click);
             // 
             // MapViewBox
             // 
@@ -75,21 +89,10 @@
             this.MapViewBox.Size = new System.Drawing.Size(565, 349);
             this.MapViewBox.TabIndex = 1;
             this.MapViewBox.TabStop = false;
+            this.MapViewBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapViewBox_MouseMove);
+            this.MapViewBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapViewBox_MouseDown);
             this.MapViewBox.Paint += new System.Windows.Forms.PaintEventHandler(this.MapViewBox_Paint);
-            // 
-            // fromImageToolStripMenuItem
-            // 
-            this.fromImageToolStripMenuItem.Name = "fromImageToolStripMenuItem";
-            this.fromImageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.fromImageToolStripMenuItem.Text = "From Image";
-            this.fromImageToolStripMenuItem.Click += new System.EventHandler(this.fromImageToolStripMenuItem_Click);
-            // 
-            // heroQuestToolStripMenuItem
-            // 
-            this.heroQuestToolStripMenuItem.Name = "heroQuestToolStripMenuItem";
-            this.heroQuestToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.heroQuestToolStripMenuItem.Text = "Hero Quest";
-            this.heroQuestToolStripMenuItem.Click += new System.EventHandler(this.heroQuestToolStripMenuItem_Click);
+            this.MapViewBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MapViewBox_MouseUp);
             // 
             // MapGenForm
             // 
@@ -101,6 +104,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MapGenForm";
             this.Text = "Map Gen";
+            this.Resize += new System.EventHandler(this.MapGenForm_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapViewBox)).EndInit();

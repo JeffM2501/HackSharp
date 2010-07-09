@@ -32,11 +32,18 @@ namespace Maps
 
         public static ItemType Empty = new ItemType();
         public Object Renderer = null;
+
+        static int LastID = 0;
+        public int ID = LastID++;
     }
 
     public class Item
     {
+        [System.Xml.Serialization.XmlIgnoreAttribute]
         public ItemType Type = ItemType.Empty;
+
+        public int ItemTypeID = -1;
+
         public Point Location = Point.Empty;
         public Object Tag = null;
     }
@@ -70,8 +77,19 @@ namespace Maps
 
     public class Room
     {
+        public int ID = -1;
         public List<Tile> Tiles = new List<Tile>();
         public string Name = string.Empty;
+
+        [System.Xml.Serialization.XmlIgnoreAttribute]
+        public List<Door> Doors = new List<Door>();
+        public List<int> DoorIDs = new List<int>();
+
+        static int LastID = 0;
+        public Room()
+        {
+            ID = LastID++;
+        }
     }
 
     public class Actor
@@ -97,11 +115,32 @@ namespace Maps
         public String Name = string.Empty;
     }
 
+    public class Door
+    {
+        public int ID = -1;
+
+        [System.Xml.Serialization.XmlIgnoreAttribute]
+        public Room[] Destinations;
+
+        public int[] DestinationIDs;
+        public bool Open = false;
+        public Point Location = Point.Empty;
+        public int Rotation = 0;
+        public bool Centered = false;
+
+        static int LastID = 0;
+        public Door()
+        {
+            ID = LastID++;
+        }
+    }
+
     public class Map
     {
         public Dictionary<int, Surface> Surfaces = new Dictionary<int, Surface>();
 
         public List<Room> Rooms = new List<Room>();
+        public List<Door> Doors = new List<Door>();
 
         public List<ItemType> Objects = new List<ItemType>();
         public List<Actor> Actors = new List<Actor>();

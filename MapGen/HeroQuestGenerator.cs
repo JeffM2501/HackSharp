@@ -9,30 +9,65 @@ namespace MapGen
 {
     class HeroQuestPart
     {
+        public class LinkNode
+        {
+            public HeroQuestPart Destination;
+            public Point Location = Point.Empty;
+        }
+
         public virtual bool Room
         {
             get { return true; }
         }
 
+        public int Rotation = 0;
+
         public Size GridSize = Size.Empty;
         public Point Origin = Point.Empty;
 
-        public bool Horizontal = false;
+        public static int RandomAngle()
+        {
+            return new Random().Next(3) * 90;
+        }
 
         public virtual Rectangle GetRect()
         {
-            if (Horizontal)
-                return new Rectangle(Origin.X,Origin.Y, GridSize.Height,GridSize.Height);
+            if (Rotation == 90)
+                return new Rectangle(Origin.X,Origin.Y, GridSize.Height,GridSize.Width);
+            else if (Rotation == 180)
+                return new Rectangle(Origin.X, Origin.Y, -GridSize.Width, -GridSize.Height);
+            if (Rotation == 270)
+                return new Rectangle(Origin.X, Origin.Y, -GridSize.Height, -GridSize.Width);
 
             return new Rectangle(Origin, GridSize);
         }
 
+        public Point TransformPos ( Point pos )
+        {
+            if (Rotation == 90)
+                return new Point(Origin.X + pos.Y, Origin.Y - pos.Y);
+            else if (Rotation == 180)
+                return new Point(Origin.X - pos.X, Origin.Y - pos.Y);
+            if (Rotation == 270)
+                return new Point(Origin.X - pos.Y, Origin.Y + pos.X);
+
+            return new Point(Origin.X + pos.X,Origin.Y + pos.Y);
+        }
+
+        public int RotateAngle ( int angle )
+        {
+            int a = Rotation + angle;
+            while (a < 360)
+                a -= 360;
+            while (a > 0)
+                a += 360;
+
+            return a;
+        }
+
         public List<HeroQuestDoor> Doors = new List<HeroQuestDoor>();
 
-        public List<HeroQuestPart> NorthLinks = new List<HeroQuestPart>();
-        public List<HeroQuestPart> SouthLinks = new List<HeroQuestPart>();
-        public List<HeroQuestPart> EastLinks = new List<HeroQuestPart>();
-        public List<HeroQuestPart> WestLinks = new List<HeroQuestPart>();
+        public List<LinkNode> Links = new List<LinkNode>();
 
         public Color MapColor = Color.Black;
     }

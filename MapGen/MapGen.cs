@@ -18,6 +18,10 @@ namespace MapGen
 
         protected int GridSize = 16;
 
+        Point LastMousePos = Point.Empty;
+
+        Point ViewOffset = new Point(0, 0);
+
         public Dictionary<Room, Color> RoomColorMap = new Dictionary<Room, Color>();
 
         public MapGenForm()
@@ -33,6 +37,9 @@ namespace MapGen
         private void MapViewBox_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.Clear(Color.Wheat);
+            e.Graphics.TranslateTransform(0, MapViewBox.Height);
+            e.Graphics.TranslateTransform(ViewOffset.X, ViewOffset.Y);
+            e.Graphics.ScaleTransform(1, -1);
 
             foreach ( Room room in map.Rooms)
             {
@@ -61,9 +68,9 @@ namespace MapGen
             graphics.DrawRectangle(Pens.White, tile.Location.X * GridSize, tile.Location.Y * GridSize, GridSize, GridSize);
 
             if (tile.Walls.ContainsKey(Direction.North))
-                graphics.DrawLine(Pens.Black, tile.Location.X * GridSize, tile.Location.Y * GridSize, tile.Location.X * GridSize + GridSize, tile.Location.Y * GridSize);
-            if (tile.Walls.ContainsKey(Direction.South))
                 graphics.DrawLine(Pens.Black, tile.Location.X * GridSize, tile.Location.Y * GridSize + GridSize, tile.Location.X * GridSize + GridSize, tile.Location.Y * GridSize + GridSize);
+            if (tile.Walls.ContainsKey(Direction.South))
+                graphics.DrawLine(Pens.Black, tile.Location.X * GridSize, tile.Location.Y * GridSize, tile.Location.X * GridSize + GridSize, tile.Location.Y * GridSize);
             
             if (tile.Walls.ContainsKey(Direction.West))
                 graphics.DrawLine(Pens.Black, tile.Location.X * GridSize, tile.Location.Y * GridSize, tile.Location.X * GridSize, tile.Location.Y * GridSize + GridSize);
@@ -108,6 +115,35 @@ namespace MapGen
         protected void GenerateHeroquestMap ()
         {
             map.Clear();
+        }
+
+        private void MapGenForm_Resize(object sender, EventArgs e)
+        {
+            MapViewBox.Invalidate();
+        }
+
+        private void MapViewBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            LastMousePos = new Point(e.X, e.Y);
+        }
+
+        private void MapViewBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            LastMousePos = new Point(e.X, e.Y);
+        }
+
+        private void MapViewBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point delta = new Point(e.Location.X - LastMousePos.X, e.Location.Y - LastMousePos.Y);
+
+            if (e.Button == MouseButtons.Left)
+            {
+                ViewOffset.X += delta.X;
+                ViewOffset.Y += delta.Y;
+                MapViewBox.Invalidate();
+            }
+
+            LastMousePos = new Point(e.X, e.Y);
         }
     }
 }
