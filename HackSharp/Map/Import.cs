@@ -19,7 +19,7 @@ namespace Maps
             if (y >= bitmap.Height || y < 0)
                 return Color.Black;
 
-            return bitmap.GetPixel(x,y);
+            return bitmap.GetPixel(x, bitmap.Height - y -1);
         }
 
         protected static bool PosIsTile( int x, int y, Bitmap bitmap)
@@ -38,28 +38,36 @@ namespace Maps
             if (!PosIsTile(pos.X - 1, pos.Y, bitmap))
                 dirs.Add(Direction.West);
            
-            if (!PosIsTile(pos.X, pos.Y + 1, bitmap))
+            if (!PosIsTile(pos.X, pos.Y - 1, bitmap))
                 dirs.Add(Direction.South);
 
-            if (!PosIsTile(pos.X, pos.Y - 1, bitmap))
+            if (!PosIsTile(pos.X, pos.Y + 1, bitmap))
                 dirs.Add(Direction.North);
 
             return dirs.ToArray();
         }
 
+        protected static bool IsDifferentRoom ( int x, int y, Bitmap bitmap, Color thisColor )
+        {
+            Color c = GetTileColor(x,y,bitmap);
+            if ( c.R == 0 && c.G == 0 && c.B == 0)
+                return false;
+
+            return c != thisColor;
+        }
         protected static bool IsDoor (Point pos, Bitmap bitmap)
         {
             if (!PosIsTile(pos.X, pos.Y, bitmap))
                 return false;
 
             Color thisColor = GetTileColor(pos.X, pos.Y, bitmap);
-            if (GetTileColor(pos.X + 1, pos.Y, bitmap) != thisColor)
+            if (IsDifferentRoom(pos.X + 1, pos.Y, bitmap,thisColor))
                 return true;
-            if (GetTileColor(pos.X - 1, pos.Y, bitmap) != thisColor)
+            if (IsDifferentRoom(pos.X - 1, pos.Y, bitmap,thisColor))
                 return true;
-            if (GetTileColor(pos.X, pos.Y + 1, bitmap) != thisColor)
+            if (IsDifferentRoom(pos.X, pos.Y + 1, bitmap,thisColor))
                 return true;
-            if (GetTileColor(pos.X, pos.Y - 1, bitmap) != thisColor)
+            if (IsDifferentRoom(pos.X, pos.Y - 1, bitmap,thisColor))
                 return true;
 
             return false;
@@ -88,33 +96,39 @@ namespace Maps
             {
                 for (int x = 0; x < bitmap.Width; x++)
                 {
-                    Color c = bitmap.GetPixel(x, y);
-
-                    Room room = null;
-
-                    if (RoomIDMap.ContainsKey(c))
-                        room = RoomIDMap[c];
-                    else
+                    if (PosIsTile(x, y, bitmap))
                     {
-                        room = new Room();
-                        RoomIDMap.Add(c, room);
+                        Color c = bitmap.GetPixel(x, bitmap.Height - y- 1);
+
+                        Room room = null;
+
+                        if (RoomIDMap.ContainsKey(c))
+                            room = RoomIDMap[c];
+                        else
+                        {
+                            room = new Room();
+                            RoomIDMap.Add(c, room);
+                        }
+
+                        Tile tile = new Tile();
+                        tile.Location = new Point(x,y);
+                        if (IsDoor(tile.Location, bitmap))
+                            tile.Type = Tile.TileType.ClosedDoor;
+                        else
+                            tile.Type = Tile.TileType.Open;
+
+                        tile.Floor = floorID;
+                        foreach (Direction dir in FindWallDirections(tile.Location, bitmap))
+                            tile.Walls.Add(dir, wallID);
+                        room.Tiles.Add(tile);
                     }
-
-                    Tile tile = new Tile();
-                    tile.Location = new Point(x, y);
-                    if (IsDoor(tile.Location, bitmap))
-                        tile.Type = Tile.TileType.ClosedDoor;
-                    else
-                        tile.Type = Tile.TileType.Open;
-
-                    tile.Floor = floorID;
-                    foreach (Direction dir in FindWallDirections(tile.Location,bitmap))
-                        tile.Walls.Add(dir, wallID);
-                    room.Tiles.Add(tile);
                 }
             }
 
             bitmap.Dispose();
+
+            foreach (KeyValuePair<Color, Room> i in RoomIDMap)
+                map.Rooms.Add(i.Value);
             return map;
         }
 
