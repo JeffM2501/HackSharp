@@ -13,6 +13,17 @@ namespace MapGen
         {
             public HeroQuestPart Destination;
             public Point Location = Point.Empty;
+
+            public LinkNode ()
+            {
+
+            }
+
+            public LinkNode ( HeroQuestPart p, Point l)
+            {
+                Destination = p;
+                Location = l;
+            }
         }
 
         public virtual bool Room
@@ -128,7 +139,7 @@ namespace MapGen
 
         protected List<HeroQuestPart> TempMap = new List<HeroQuestPart>();
 
-        protected List<Point> FilledPositions = new List<Point>();
+        protected Dictionary<Point, HeroQuestPart> FilledPositions = new Dictionary<Point, HeroQuestPart>();
 
         public HeroQuestGenerator()
         {
@@ -177,7 +188,7 @@ namespace MapGen
                 {
                     for ( int x = rect.Left; x <= rect.Right; x++ )
                     {
-                        if (FilledPositions.Contains(new Point(x,y)))
+                        if (FilledPositions.ContainsKey(new Point(x,y)))
                             return false;
                     }
                 }
@@ -194,7 +205,7 @@ namespace MapGen
                 for ( int y = rect.Top; y <= rect.Bottom; y++)
                 {
                     for ( int x = rect.Left; x <= rect.Right; x++ )
-                        FilledPositions.Add(new Point(x,y));
+                        FilledPositions.Add(new Point(x,y),part);
                 }
             }
         }
@@ -212,6 +223,14 @@ namespace MapGen
             Stairs.Origin = new Point(0, 0);
 
             TempMap.Add(Stairs);
+
+            HeroQuestPassage StartHall = new HeroQuestPassage();
+            StartHall.GridSize = new Size(2, 10);
+
+            LinkNode l = new LinkNode()
+            StartHall.Links;
+            TempMap.Add(StartHall);
+
 
             return map;
         }
