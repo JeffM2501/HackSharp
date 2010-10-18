@@ -52,7 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Resources\Resources.csproj">
+    <ProjectReference Include="..\..\Components\Resources\Resources.csproj">
       <Project>{3591CC04-B4FE-4671-B948-9A11E29FB126}</Project>
       <Name>Resources</Name>
     </ProjectReference>

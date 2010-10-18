@@ -227,8 +227,8 @@ namespace MapGen
             HeroQuestPassage StartHall = new HeroQuestPassage();
             StartHall.GridSize = new Size(2, 10);
 
-            LinkNode l = new LinkNode()
-            StartHall.Links;
+           // LinkNode l = new LinkNode()
+           // StartHall.Links;
             TempMap.Add(StartHall);
 
 

@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Drawing;
-using System.Reflection;
 
 using Resources;
 using Maps;
 
-namespace Renderer
+namespace HackSharp
 {
     public class ActorRenderFactory
     {
