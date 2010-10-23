@@ -80,6 +80,8 @@ namespace WData
         public int[] Neighbors = new int[6] { -1, -1, -1, -1, -1, 1 };
 
         public object Tag = null;
+        public object MapTag = null;
+        public object RenderTag = null;
 
         public class Plane
         {

@@ -14,6 +14,19 @@ namespace SharpShooter
     {
         public Dictionary<string, string> MaterialTextureMap = new Dictionary<string, string>();
 
+        public class ClusterRenderer
+        {
+            public void Update(Cluster cluster)
+            {
+
+            }
+
+            public void Draw()
+            {
+
+            }
+        }
+
         public class CameraView
         {
             public Vector3 Position = Vector3.Zero;
@@ -38,7 +51,10 @@ namespace SharpShooter
 
         public void SetRenderData(Cluster cluster)
         {
-        
+            if (cluster.RenderTag == null)
+                cluster.RenderTag = new ClusterRenderer();
+
+            (cluster.RenderTag as ClusterRenderer).Update(cluster);
         }
 
         public void DrawGrid()
@@ -69,6 +85,13 @@ namespace SharpShooter
             view.Execute();
 
             DrawGrid();
+
+            foreach (KeyValuePair<int, Cluster> cluster in World)
+            {
+                ClusterRenderer r = (cluster.Value.RenderTag as ClusterRenderer);
+                if (r != null)
+                    r.Draw();
+            }
 
             GL.PopMatrix();
         }
