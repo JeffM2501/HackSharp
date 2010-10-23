@@ -79,6 +79,8 @@ namespace WData
 
         public int[] Neighbors = new int[6] { -1, -1, -1, -1, -1, 1 };
 
+        public object Tag = null;
+
         public class Plane
         {
             public Block[,] Members = null;
