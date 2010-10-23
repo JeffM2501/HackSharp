@@ -12,6 +12,8 @@ namespace SharpShooter
 {
     class WorldRenderer
     {
+        public Dictionary<string, string> MaterialTextureMap = new Dictionary<string, string>();
+
         public class CameraView
         {
             public Vector3 Position = Vector3.Zero;
@@ -32,6 +34,11 @@ namespace SharpShooter
         public WorldRenderer(Dictionary<int, Cluster> world)
         {
             World = world;
+        }
+
+        public void SetRenderData(Cluster cluster)
+        {
+        
         }
 
         public void DrawGrid()

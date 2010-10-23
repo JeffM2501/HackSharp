@@ -15,6 +15,12 @@ namespace Textures
         public static bool CacheFilesToImage = false;
         public static bool UseAnisometricFiltering = false;
 
+        public static void PreloadAll()
+        {
+            foreach (KeyValuePair<string,Texture> texture in TextureCache)
+                texture.Value.Load();
+        }
+
         public static Texture Get ( string imageFile )
         {
             return Get(imageFile, true, false);
@@ -131,7 +137,7 @@ namespace Textures
             BoundID = InvalidID;
         }
 
-        protected void Load ()
+        public void Load ()
         {
             GL.Enable(EnableCap.Texture2D);
             Bitmap bitmap;
