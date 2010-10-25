@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
+using Textures;
+
 using WData;
 
 using OpenTK;
@@ -12,7 +14,7 @@ namespace SharpShooter
 {
     class WorldRenderer
     {
-        public Dictionary<string, string> MaterialTextureMap = new Dictionary<string, string>();
+        public Dictionary<int, Texture> MaterialTextureMap = new Dictionary<int, Texture>();
 
         public class ClusterRenderer
         {
@@ -42,11 +44,17 @@ namespace SharpShooter
             }
         }
 
-        Dictionary<int, Cluster> World;
+        Dictionary<int, Cluster> Map;
 
         public WorldRenderer(Dictionary<int, Cluster> world)
         {
-            World = world;
+            Map = world;
+        }
+
+        public void InitRenderData()
+        {
+            foreach (KeyValuePair<int, Cluster> c in Map)
+                SetRenderData(c.Value);
         }
 
         public void SetRenderData(Cluster cluster)
@@ -86,7 +94,7 @@ namespace SharpShooter
 
             DrawGrid();
 
-            foreach (KeyValuePair<int, Cluster> cluster in World)
+            foreach (KeyValuePair<int, Cluster> cluster in Map)
             {
                 ClusterRenderer r = (cluster.Value.RenderTag as ClusterRenderer);
                 if (r != null)

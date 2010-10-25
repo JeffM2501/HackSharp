@@ -8,13 +8,16 @@ using OpenTK.Graphics;
 
 using WData;
 
+using Textures;
+using Resources;
+
 namespace SharpShooter
 {
     class App
     {
         protected GLControl Control;
 
-        Dictionary<int, Cluster> World = new Dictionary<int, Cluster>();
+        World Map = new World();
 
         WorldRenderer Renderer;
         WorldRenderer.CameraView View = new WorldRenderer.CameraView();
@@ -101,8 +104,13 @@ namespace SharpShooter
         {
             // load the world
 
+            Map.GenerateSimple();
             // load it into the renderer
-            Renderer = new WorldRenderer(World);
+            Renderer = new WorldRenderer(Map.Map);
+            Renderer.MaterialTextureMap.Add(World.StoneTextureID, Texture.Get(ResourceManager.FindFile("Data/terrain/stone.png"), true, true));
+            Renderer.MaterialTextureMap.Add(World.DirtTextureID, Texture.Get(ResourceManager.FindFile("Data/dirt/stone.png"), true, true));
+            Renderer.MaterialTextureMap.Add(World.GrassSideTextureID, Texture.Get(ResourceManager.FindFile("Data/terrain/grass_side.png"), true, true));
+            Renderer.MaterialTextureMap.Add(World.GrassTopTextureID, Texture.Get(ResourceManager.FindFile("Data/terrain/grass.png"), true, true));
 
             View.Position = new Vector3(0, 0, 2);
         }

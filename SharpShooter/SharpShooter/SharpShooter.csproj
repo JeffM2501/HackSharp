@@ -82,8 +82,17 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Renderer.cs" />
+    <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Components\Resources\Resources.csproj">
+      <Project>{3591CC04-B4FE-4671-B948-9A11E29FB126}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Components\Textures\Textures.csproj">
+      <Project>{8AFCDAAF-5B7F-4955-B27A-224EAA8EEABA}</Project>
+      <Name>Textures</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WData\WData.csproj">
       <Project>{FD2F7234-6422-4E89-BEEB-471A46870B62}</Project>
       <Name>WData</Name>

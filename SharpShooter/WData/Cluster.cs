@@ -48,7 +48,7 @@ namespace WData
      //   public SlopeDirection Direction = SlopeDirection.North; // ignored if height is full or slope is empty
      //   public CutCorner Corner = CutCorner.None; // ignored if slope is not empty
 
-        public int[] Materials = new int[6]{0,0,0,0,0,0};
+        public int[] Materials = new int[6] { -1, -1, -1, -1, -1, -1 };
 
         public Block Clone ( )
         {
@@ -62,12 +62,23 @@ namespace WData
             return newBlock;
         }
 
+        public void SetMaterials(int id)
+        {
+            for (int i = 0; i < Materials.Length; i++)
+                Materials[i] = id;
+        }
+
         public object Tag = null;
     }
 
     public class Cluster
     {
         static Dictionary<int, Cluster> World = new Dictionary<int, Cluster>();
+
+        public static Dictionary<int, Cluster> Map
+        {
+            get { return World; }
+        }
 
         public int ID;
         public static int XYSize = 16;
@@ -77,6 +88,7 @@ namespace WData
         public int OriginY = 0;
         public int OriginZ = 0;
 
+        // north, south, east, west, up, down
         public int[] Neighbors = new int[6] { -1, -1, -1, -1, -1, 1 };
 
         public object Tag = null;
@@ -121,6 +133,27 @@ namespace WData
         public Block GetBlock ( int X, int Y, int Z )
         {
             return Planes[Z - OriginZ].Members[X - OriginX, Y - OriginY];
+        }
+
+        public void LinkNeighbors()
+        {
+            foreach ( KeyValuePair<int,Cluster> c in World)
+            {
+                if (c.Value != this)
+                {
+                    if (c.Value.OriginX == OriginX + 1 && c.Value.OriginY == OriginY)
+                        Neighbors[(int)WorldDirection.East] = c.Key;
+
+                    if (c.Value.OriginX == OriginX - 1 && c.Value.OriginY == OriginY)
+                        Neighbors[(int)WorldDirection.West] = c.Key;
+
+                    if (c.Value.OriginX == OriginX && c.Value.OriginY == OriginY + 1)
+                        Neighbors[(int)WorldDirection.North] = c.Key;
+
+                    if (c.Value.OriginX == OriginX && c.Value.OriginY == OriginY - 1)
+                        Neighbors[(int)WorldDirection.South] = c.Key;
+                }
+            }
         }
 
         public Block GetNeighbor(int X, int Y, int Z, WorldDirection dir)
