@@ -18,14 +18,45 @@ namespace SharpShooter
 
         public class ClusterRenderer
         {
+            public List<Cluster.Plane> PlanesToRender = new List<Cluster.Plane>();
+
+            public class RenderItem
+            {
+                public int X, Y, Z;
+                public WorldDirection Dir;
+            }
+
+            public Dictionary<Texture, List<RenderItem>> RenderList = new Dictionary<Texture, List<RenderItem>>();
+
             public void Update(Cluster cluster)
+            {
+                for (int z = 0; z < cluster.Planes.Length; z++)
+                {
+                    Cluster.Plane plane = cluster.Planes[z];
+                    if (plane.Solid != null && plane.Solid.Height == Solidity.Empty)
+                        continue; // it's air
+
+                    // see if our plane is hidden
+                    for (WorldDirection dir = WorldDirection.North; dir <= WorldDirection.Down; dir++)
+                    {
+                        Cluster.Plane p = cluster.GetNeighbor(z, WorldDirection.North);
+                        if (p == null || !p.SideSolid(DirectionUtils.GetFacingDir(WorldDirection.North)))
+                        {
+                            PlanesToRender.Add(plane);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            protected void BuildToplist( Cluster cluster, int plane)
             {
 
             }
 
             public void Draw()
             {
-
+              //  foreach (Cluster.Plane)
             }
         }
 

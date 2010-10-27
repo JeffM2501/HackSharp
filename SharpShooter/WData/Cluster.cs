@@ -14,6 +14,27 @@ namespace WData
         Up = 4,
         Down = 5,
     }
+
+    public class DirectionUtils
+    {
+        public static WorldDirection GetFacingDir(WorldDirection dir)
+        {
+            switch (dir)
+            {
+                case WorldDirection.Up:
+                    return WorldDirection.Down;
+                case WorldDirection.Down:
+                    return WorldDirection.Up;
+                case WorldDirection.North:
+                    return WorldDirection.South;
+                case WorldDirection.South:
+                    return WorldDirection.North;
+                case WorldDirection.East:
+                    return WorldDirection.West;
+            }
+            return WorldDirection.East;
+        }
+    }
     
     public enum Solidity
     {
@@ -100,6 +121,62 @@ namespace WData
             public Block[,] Members = null;
             public Block Solid = null; // valid if the plane is entirely one block type;
 
+            public bool SideSolid(WorldDirection dir)
+            {
+                if (Solid != null && Solid.Height != Solidity.Empty)// it's full of empty blocks
+                    return true;
+
+                if (dir == WorldDirection.North)
+                {
+                    for (int x = 0; x < Cluster.XYSize; x++)
+                    {
+                        if (Members[x, Cluster.XYSize - 1].Height != Solidity.Solid)
+                            return false;
+                    }
+                    return true;
+                }
+
+                if (dir == WorldDirection.South)
+                {
+                    for (int x = 0; x < Cluster.XYSize; x++)
+                    {
+                        if (Members[x, 0].Height != Solidity.Solid)
+                            return false;
+                    }
+                    return true;
+                }
+
+                if (dir == WorldDirection.East)
+                {
+                    for (int y = 0; y < Cluster.XYSize; y++)
+                    {
+                        if (Members[Cluster.XYSize-1, y].Height != Solidity.Solid)
+                            return false;
+                    }
+                    return true;
+                }
+
+                if (dir == WorldDirection.West)
+                {
+                    for (int y = 0; y < Cluster.XYSize; y++)
+                    {
+                        if (Members[0, y].Height != Solidity.Solid)
+                            return false;
+                    }
+                    return true;
+                }
+
+                for (int x = 0; x < Cluster.XYSize; x++)
+                {
+                    for (int y = 0; y < Cluster.XYSize; y++)
+                    {
+                        if (Members[x, y].Height != Solidity.Solid)
+                            return false;
+                    }
+                }
+                return true; // it has to be solid
+            }
+
             public void FillFromSolid ( )
             {
                 if (Solid == null)
@@ -154,6 +231,15 @@ namespace WData
                         Neighbors[(int)WorldDirection.South] = c.Key;
                 }
             }
+        }
+
+        public Plane GetNeighbor(int Z, WorldDirection dir)
+        {
+            int neighbor = Neighbors[(int)dir];
+            if (neighbor == -1)
+                return null;
+
+            return World[neighbor].Planes[Z];
         }
 
         public Block GetNeighbor(int X, int Y, int Z, WorldDirection dir)

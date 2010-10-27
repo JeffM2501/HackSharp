@@ -24,8 +24,8 @@ namespace SharpShooter
 
         public App(Form1 form)
         {
-            form.Load += new Form1.NonTimeEvent(form_Load);
-            form.Update += new Form1.TimeEvent(form_Update);
+            form.Loaded += new Form1.NonTimeEvent(form_Load);
+            form.Think += new Form1.TimeEvent(form_Update);
             form.Draw += new Form1.TimeEvent(form_Draw);
             form.Control.Resize += new EventHandler(Control_Resize);
 

@@ -20,13 +20,13 @@ namespace SharpShooter
         double Now = 0;
         double Before = 0;
 
-        bool Loaded = false;
+        bool IsLoaded = false;
 
         public delegate void NonTimeEvent ();
         public delegate void TimeEvent( double Now, double Delta );
 
-        public event NonTimeEvent Load;
-        public event TimeEvent Update;
+        public event NonTimeEvent Loaded;
+        public event TimeEvent Think;
         public event TimeEvent Draw;
 
         public GLControl Control
@@ -43,7 +43,7 @@ namespace SharpShooter
 
         void FPSTimer_Tick(object sender, EventArgs e)
         {
-            Think();
+            ProcessTimer();
             glControl1.Invalidate();
         }
 
@@ -53,14 +53,14 @@ namespace SharpShooter
 
             Before = Clock.ElapsedMilliseconds/1000.0;
             Now = Clock.ElapsedMilliseconds / 1000.0;
-            Loaded = true;
-            if (Load != null)
-                Load();
+            IsLoaded = true;
+            if (Loaded != null)
+                Loaded();
         }
 
         private void glControl1_Paint(object sender, PaintEventArgs e)
         {
-            if (!Loaded)
+            if (!IsLoaded)
                 return;
 
             if (Draw != null)
@@ -69,13 +69,13 @@ namespace SharpShooter
             glControl1.SwapBuffers();
         }
 
-        protected void Think()
+        protected void ProcessTimer()
         {
             Before = Now;
             Now = Clock.ElapsedMilliseconds / 1000.0;
 
-            if (Update != null)
-                Update(Now, Now - Before);
+            if (Think != null)
+                Think(Now, Now - Before);
         }
     }
 }
