@@ -1,6 +1,6 @@
 <?PHP
 
-include_once("conf/config.php");
+include_once("config/config.php");
 include_once("db.php");
 
 function SiteDB()
@@ -25,7 +25,7 @@ $db = SiteDB();
 
 $action=GetRequest("action");
 
-if ($action="check")
+if ($action=="check")
 {
 	$name = GetRequest("name");
 	$names = DBQuery($db,"SELECT UID FROM Users WHERE Name='$name'");
@@ -36,7 +36,7 @@ if ($action="check")
 		echo "BAD";
 	exit;
 }
-else if ($action="add")
+else if ($action=="add")
 {
 	$name = GetRequest("name");
 	$email = GetRequest("email");
@@ -79,7 +79,7 @@ else if ($action="add")
 		
 	exit;
 }
-else if ($action="verify")
+else if ($action=="verify")
 {
 	$uid = GetRequest("email");
 	$key = GetRequest("key");
@@ -114,7 +114,7 @@ else if ($action="verify")
 	echo "OK: Verified";
 	exit;
 }
-else if ($action="auth")
+else if ($action=="auth")
 {
 	$email = GetRequest("email");
 	$pass1 = GetRequest("pass");
@@ -152,7 +152,7 @@ else if ($action="auth")
 	echo "OK $id $token";
 	exit;
 }
-else if ($action="token")
+else if ($action=="token")
 {
 	$id = GetRequest("id");
 	$token = GetRequest("token");
@@ -175,4 +175,5 @@ else if ($action="token")
 	exit;
 }
 
+echo "nope";
 ?>
