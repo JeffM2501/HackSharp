@@ -7,6 +7,11 @@ using Lidgren.Network;
 
 namespace Messages
 {
+    public class MessageVersion
+    {
+        public static int Version = 1;
+    }
+
     public class MessagePacker
     {
         public static NetBuffer PackName(int name)

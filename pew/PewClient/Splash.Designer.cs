@@ -30,16 +30,16 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.updatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.videoSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.audioSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.ServerList = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Play = new System.Windows.Forms.Button();
-            this.registerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VersionLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +63,12 @@
             this.updatesToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.updatesToolStripMenuItem.Text = "Updates";
             // 
+            // checkForUpdatesToolStripMenuItem
+            // 
+            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.checkForUpdatesToolStripMenuItem.Text = "Check For Updates";
+            // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -73,6 +79,32 @@
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // videoSettingsToolStripMenuItem
+            // 
+            this.videoSettingsToolStripMenuItem.Name = "videoSettingsToolStripMenuItem";
+            this.videoSettingsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.videoSettingsToolStripMenuItem.Text = "Video Settings";
+            // 
+            // audioSettingsToolStripMenuItem
+            // 
+            this.audioSettingsToolStripMenuItem.Name = "audioSettingsToolStripMenuItem";
+            this.audioSettingsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.audioSettingsToolStripMenuItem.Text = "Audio Settings";
+            // 
+            // userSettingsToolStripMenuItem
+            // 
+            this.userSettingsToolStripMenuItem.Name = "userSettingsToolStripMenuItem";
+            this.userSettingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.userSettingsToolStripMenuItem.Text = "User Settings";
+            this.userSettingsToolStripMenuItem.Click += new System.EventHandler(this.userSettingsToolStripMenuItem_Click);
+            // 
+            // registerToolStripMenuItem
+            // 
+            this.registerToolStripMenuItem.Name = "registerToolStripMenuItem";
+            this.registerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.registerToolStripMenuItem.Text = "Register";
+            this.registerToolStripMenuItem.Click += new System.EventHandler(this.registerToolStripMenuItem_Click);
             // 
             // webBrowser1
             // 
@@ -85,30 +117,6 @@
             this.webBrowser1.Size = new System.Drawing.Size(652, 301);
             this.webBrowser1.TabIndex = 2;
             this.webBrowser1.Url = new System.Uri("http://www.google.com", System.UriKind.Absolute);
-            // 
-            // checkForUpdatesToolStripMenuItem
-            // 
-            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.checkForUpdatesToolStripMenuItem.Text = "Check For Updates";
-            // 
-            // videoSettingsToolStripMenuItem
-            // 
-            this.videoSettingsToolStripMenuItem.Name = "videoSettingsToolStripMenuItem";
-            this.videoSettingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.videoSettingsToolStripMenuItem.Text = "Video Settings";
-            // 
-            // audioSettingsToolStripMenuItem
-            // 
-            this.audioSettingsToolStripMenuItem.Name = "audioSettingsToolStripMenuItem";
-            this.audioSettingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.audioSettingsToolStripMenuItem.Text = "Audio Settings";
-            // 
-            // userSettingsToolStripMenuItem
-            // 
-            this.userSettingsToolStripMenuItem.Name = "userSettingsToolStripMenuItem";
-            this.userSettingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.userSettingsToolStripMenuItem.Text = "User Settings";
             // 
             // ServerList
             // 
@@ -141,12 +149,6 @@
             this.Play.Text = "Play";
             this.Play.UseVisualStyleBackColor = true;
             // 
-            // registerToolStripMenuItem
-            // 
-            this.registerToolStripMenuItem.Name = "registerToolStripMenuItem";
-            this.registerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.registerToolStripMenuItem.Text = "Register";
-            // 
             // VersionLabel
             // 
             this.VersionLabel.AutoSize = true;
@@ -156,7 +158,7 @@
             this.VersionLabel.TabIndex = 6;
             this.VersionLabel.Text = "V.";
             // 
-            // Form1
+            // Splash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -168,8 +170,9 @@
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "Splash";
             this.Text = "Pew... A decidedly simple shooter";
+            this.Load += new System.EventHandler(this.Splash_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

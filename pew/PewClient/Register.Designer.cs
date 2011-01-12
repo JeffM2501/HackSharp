@@ -58,6 +58,7 @@
             // CANCEL
             // 
             this.CANCEL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CANCEL.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.CANCEL.Location = new System.Drawing.Point(131, 206);
             this.CANCEL.Name = "CANCEL";
             this.CANCEL.Size = new System.Drawing.Size(75, 23);
@@ -178,8 +179,10 @@
             // 
             // Register
             // 
+            this.AcceptButton = this.OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.CANCEL;
             this.ClientSize = new System.Drawing.Size(299, 241);
             this.Controls.Add(this.ErrorLabel);
             this.Controls.Add(this.Terms);

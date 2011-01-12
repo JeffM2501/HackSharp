@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
+using System.IO;
+using System.Net;
 using System.Text;
 using System.Windows.Forms;
 
@@ -11,6 +12,11 @@ namespace PewClient
 {
     public partial class Register : Form
     {
+        public string User = string.Empty;
+        public string Pass = string.Empty;
+
+        public string RootURL = "http://www.awesomelaser.com/gauth/?";
+
         public Register()
         {
             InitializeComponent();
@@ -21,7 +27,7 @@ namespace PewClient
         {
             ErrorLabel.Text = string.Empty;
             OK.Enabled = false;
-            CheckName.Enabled = false;
+            CheckName.Enabled = Callsign.Text != string.Empty;
 
             if (Password1.Text == string.Empty || Password2.Text == string.Empty)
                 return;
@@ -32,11 +38,7 @@ namespace PewClient
                 return;
             }
 
-            if (Email.Text == string.Empty || Callsign.Text == string.Empty)
-                return;
-
-            OK.Enabled = true;
-            CheckName.Enabled = true;
+            OK.Enabled = Email.Text != string.Empty && Terms.CheckState = CheckState.Checked;
         }
 
         private void Email_TextChanged(object sender, EventArgs e)
@@ -62,6 +64,15 @@ namespace PewClient
         private void CheckName_Click(object sender, EventArgs e)
         {
             // check the name
+            WebClient client = new WebClient();
+            string result = client.DownloadString(new Uri(RootURL + "action=check&name=" + Callsign.Text));
+            if (result == "OK")
+                MessageBox.Show("The name " + Callsign.Text + " is available");
+            else
+            {
+                MessageBox.Show("The name " + Callsign.Text + " is taken, please choose another.");
+                Callsign.Text = string.Empty;
+            }
         }
 
         private void OK_Click(object sender, EventArgs e)

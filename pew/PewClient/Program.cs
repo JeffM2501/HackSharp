@@ -5,6 +5,14 @@ using System.Windows.Forms;
 
 namespace PewClient
 {
+
+    public static class Version
+    {
+        public static int Major = 0;
+        public static int Minor = 0;
+        public static int Revision = 0;
+    }
+
     static class Program
     {
         /// <summary>
