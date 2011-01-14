@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3EAADD13-74E5-471B-B981-011DBBD98D6E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -75,6 +75,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserSettings.resx">
+      <DependentUpon>UserSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -88,6 +91,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="UserSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserSettings.Designer.cs">
+      <DependentUpon>UserSettings.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

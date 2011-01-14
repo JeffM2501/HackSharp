@@ -109,9 +109,14 @@ namespace PewClient
                     error = "The registration process did not complete.";
 
                 MessageBox.Show(error);
-                
+
+                DialogResult = DialogResult.None;
             }
- 
+            else
+            {
+                User = Email.Text;
+                Pass = Password1.Text;
+            }
         }
 
         private void Terms_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
