@@ -7,6 +7,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace PewClient
 {
@@ -38,7 +39,7 @@ namespace PewClient
                 return;
             }
 
-            OK.Enabled = Email.Text != string.Empty && Terms.CheckState = CheckState.Checked;
+            OK.Enabled = Email.Text != string.Empty && Agree.Checked;
         }
 
         private void Email_TextChanged(object sender, EventArgs e)
@@ -78,11 +79,45 @@ namespace PewClient
         private void OK_Click(object sender, EventArgs e)
         {
             // do the registration
+            WebClient client = new WebClient();
+            string url = RootURL + "action=add&name=" + Callsign.Text;
+            url += "email=" + Email.Text;
+            url += "pass1=" + Password1.Text;
+            url += "pass2=" + Password2.Text;
+
+            string result = client.DownloadString(new Uri(url));
+            if (result != "OK")
+            {
+                string[] nugs = result.Split(" ".ToCharArray());
+
+                string error = string.Empty;
+                if (nugs.Length > 1)
+                {
+                    if (nugs[1] == "NAME")
+                    {
+                        error = "The name " + Callsign.Text + " is not available.";
+                        Callsign.Text = string.Empty;
+                    }
+                    else if (nugs[1] == "EMAIL")
+                        error = "An account for " + Email.Text + " already exists.";
+                    else if (nugs[1] == "PASS")
+                        error = "Passwords do not match.";
+                    else
+                        error = "The registration process did not complete.";
+                }
+                else
+                    error = "The registration process did not complete.";
+
+                MessageBox.Show(error);
+                
+            }
+ 
         }
 
         private void Terms_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // show terms
+            Process.Start(RootURL + "action=terms");
         }
     }
 }
