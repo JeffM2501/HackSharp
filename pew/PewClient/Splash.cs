@@ -13,8 +13,6 @@ namespace PewClient
 {
     public partial class Splash : Form
     {
-        Prefs UserPrefs;
-
         public Splash()
         {
             InitializeComponent();
@@ -25,11 +23,22 @@ namespace PewClient
         {
             if (!Prefs.Exists())
                 registerToolStripMenuItem_Click(this, EventArgs.Empty);
-           
-            UserPrefs = Prefs.Load();
 
-            if (UserPrefs.UserName == string.Empty)
+            Prefs prefs = Prefs.Load();
+
+            if (prefs.UserName == string.Empty)
                 userSettingsToolStripMenuItem_Click(this, EventArgs.Empty);
+        }
+
+        protected void CheckPlay()
+        {
+            Prefs prefs = Prefs.Load();
+            Play.Enabled = prefs.UserName != string.Empty;
+        }
+
+        protected void GetServerList()
+        {
+
         }
 
         private void registerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -47,7 +56,48 @@ namespace PewClient
 
         private void userSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            UserSettings settings = new UserSettings();
+            Prefs prefs = Prefs.Load();
+            settings.User = prefs.UserName;
+            settings.Pass = prefs.Password;
+            settings.Save = prefs.Savepassword;
+            if (settings.ShowDialog(this) == DialogResult.OK)
+            {
+                prefs.UserName = settings.User;
+                prefs.Password = settings.Pass;
+                prefs.Savepassword = settings.Save;
+                Prefs.Save(prefs);
+            }
+        }
 
+        private void Play_Click(object sender, EventArgs e)
+        {
+            string user = string.Empty;
+            string pass = string.Empty;
+
+            Prefs prefs = Prefs.Load();
+            if (prefs.UserName == string.Empty)
+                userSettingsToolStripMenuItem_Click(this,EventArgs.Empty);
+
+            if (prefs.UserName == string.Empty)
+                return;
+
+            if (!prefs.Savepassword || prefs.Password != string.Empty)
+            {
+                GetPass p = new GetPass();
+                p.Pass = prefs.Password;
+                if (p.ShowDialog(this) == DialogResult.OK)
+                    pass = p;
+                else
+                    return;
+            }
+            else
+                pass = prefs.Password;
+
+            if (user == string.Empty || pass == string.Empty)
+                return;
+
+            // send login;
         }
     }
 }
