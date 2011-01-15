@@ -9,14 +9,14 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 
+using Messages;
+
 namespace PewClient
 {
     public partial class Register : Form
     {
         public string User = string.Empty;
         public string Pass = string.Empty;
-
-        public string RootURL = "http://www.awesomelaser.com/gauth/?";
 
         public Register()
         {
@@ -66,7 +66,7 @@ namespace PewClient
         {
             // check the name
             WebClient client = new WebClient();
-            string result = client.DownloadString(new Uri(RootURL + "action=check&name=" + Callsign.Text));
+            string result = client.DownloadString(new Uri(RootHost.AuthURL + "action=check&name=" + Callsign.Text));
             if (result == "OK")
                 MessageBox.Show("The name " + Callsign.Text + " is available");
             else
@@ -80,7 +80,7 @@ namespace PewClient
         {
             // do the registration
             WebClient client = new WebClient();
-            string url = RootURL + "action=add&name=" + Callsign.Text;
+            string url = RootHost.AuthURL + "action=add&name=" + Callsign.Text;
             url += "email=" + Email.Text;
             url += "pass1=" + Password1.Text;
             url += "pass2=" + Password2.Text;
@@ -122,7 +122,7 @@ namespace PewClient
         private void Terms_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // show terms
-            Process.Start(RootURL + "action=terms");
+            Process.Start(RootHost.AuthURL + "action=terms");
         }
     }
 }

@@ -12,6 +12,13 @@ namespace Messages
         public static int Version = 1;
     }
 
+    public class RootHost
+    {
+        public static string AuthURL = "http://www.awesomelaser.com/gauth/?";
+        public static string ListURL = "http://www.awesomelaser.com/gauth/list.php?";
+        public static string NewsURL = "http://www.awesomelaser.com/gauth/news.php?";
+    }
+
     public class MessagePacker
     {
         public static NetBuffer PackName(int name)

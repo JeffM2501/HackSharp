@@ -13,6 +13,10 @@ namespace PewClient
 {
     public partial class Splash : Form
     {
+        public string Host = string.Empty;
+        public UInt64 ID = 0;
+        public UInt64 Token = 0;
+
         public Splash()
         {
             InitializeComponent();
@@ -72,8 +76,7 @@ namespace PewClient
 
         private void Play_Click(object sender, EventArgs e)
         {
-            string user = string.Empty;
-            string pass = string.Empty;
+            AuthDlog auth = new AuthDlog();
 
             Prefs prefs = Prefs.Load();
             if (prefs.UserName == string.Empty)
@@ -82,22 +85,34 @@ namespace PewClient
             if (prefs.UserName == string.Empty)
                 return;
 
+            auth.User = prefs.UserName;
+
             if (!prefs.Savepassword || prefs.Password != string.Empty)
             {
                 GetPass p = new GetPass();
                 p.Pass = prefs.Password;
                 if (p.ShowDialog(this) == DialogResult.OK)
-                    pass = p;
+                    auth.Pass = p.Pass;
                 else
                     return;
             }
             else
-                pass = prefs.Password;
+                auth.Pass = prefs.Password;
 
-            if (user == string.Empty || pass == string.Empty)
+            if (auth.User == string.Empty || auth.Pass == string.Empty)
                 return;
 
             // send login;
+            DialogResult result = auth.ShowDialog(this);
+            if (result != DialogResult.OK)
+                return;
+
+            ID = auth.ID;
+            Token = auth.Token;
+
+            // do the server list
+
+            Close();
         }
     }
 }
