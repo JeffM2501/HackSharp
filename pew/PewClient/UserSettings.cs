@@ -18,9 +18,6 @@ namespace PewClient
         public UserSettings()
         {
             InitializeComponent();
-            Email.Text = User;
-            Password.Text = Pass;
-            SavePassword.Checked = Save;
         }
 
         private void SavePassword_CheckedChanged(object sender, EventArgs e)
@@ -31,6 +28,21 @@ namespace PewClient
                 Password.Text = string.Empty;
             else
                 Password.Text = Pass;
+        }
+
+        private void OK_Click(object sender, EventArgs e)
+        {
+            User = Email.Text;
+            Pass = Password.Text;
+            Save = SavePassword.Checked;
+            DialogResult = DialogResult.OK;
+        }
+
+        private void UserSettings_Load(object sender, EventArgs e)
+        {
+            Email.Text = User;
+            Password.Text = Pass;
+            SavePassword.Checked = Save;
         }
     }
 }

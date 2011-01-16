@@ -45,6 +45,7 @@
             this.OK.TabIndex = 0;
             this.OK.Text = "OK";
             this.OK.UseVisualStyleBackColor = true;
+            this.OK.Click += new System.EventHandler(this.OK_Click);
             // 
             // Cancel
             // 
@@ -78,7 +79,7 @@
             // SavePassword
             // 
             this.SavePassword.AutoSize = true;
-            this.SavePassword.Location = new System.Drawing.Point(12, 50);
+            this.SavePassword.Location = new System.Drawing.Point(12, 52);
             this.SavePassword.Name = "SavePassword";
             this.SavePassword.Size = new System.Drawing.Size(100, 17);
             this.SavePassword.TabIndex = 4;
@@ -90,8 +91,9 @@
             // 
             this.Password.Location = new System.Drawing.Point(12, 73);
             this.Password.Name = "Password";
+            this.Password.PasswordChar = '*';
             this.Password.Size = new System.Drawing.Size(276, 20);
-            this.Password.TabIndex = 0;
+            this.Password.TabIndex = 5;
             // 
             // UserSettings
             // 
@@ -110,6 +112,7 @@
             this.MinimizeBox = false;
             this.Name = "UserSettings";
             this.Text = "User Settings";
+            this.Load += new System.EventHandler(this.UserSettings_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

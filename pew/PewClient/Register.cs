@@ -21,7 +21,7 @@ namespace PewClient
         public Register()
         {
             InitializeComponent();
-            ErrorLabel.Text = string.Empty;
+            CheckButtons();
         }
 
         void CheckButtons()
@@ -81,9 +81,9 @@ namespace PewClient
             // do the registration
             WebClient client = new WebClient();
             string url = RootHost.AuthURL + "action=add&name=" + Callsign.Text;
-            url += "email=" + Email.Text;
-            url += "pass1=" + Password1.Text;
-            url += "pass2=" + Password2.Text;
+            url += "&email=" + Email.Text;
+            url += "&pass1=" + Password1.Text;
+            url += "&pass2=" + Password2.Text;
 
             string result = client.DownloadString(new Uri(url));
             if (result != "OK")
@@ -116,6 +116,7 @@ namespace PewClient
             {
                 User = Email.Text;
                 Pass = Password1.Text;
+                DialogResult = DialogResult.OK;
             }
         }
 
@@ -123,6 +124,11 @@ namespace PewClient
         {
             // show terms
             Process.Start(RootHost.AuthURL + "action=terms");
+        }
+
+        private void Agree_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckButtons();
         }
     }
 }

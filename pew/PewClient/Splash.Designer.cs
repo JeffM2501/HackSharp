@@ -152,8 +152,9 @@
             // 
             // VersionLabel
             // 
+            this.VersionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.VersionLabel.AutoSize = true;
-            this.VersionLabel.Location = new System.Drawing.Point(325, 386);
+            this.VersionLabel.Location = new System.Drawing.Point(304, 386);
             this.VersionLabel.Name = "VersionLabel";
             this.VersionLabel.Size = new System.Drawing.Size(17, 13);
             this.VersionLabel.TabIndex = 6;
@@ -174,6 +175,7 @@
             this.Name = "Splash";
             this.Text = "Pew... A decidedly simple shooter";
             this.Load += new System.EventHandler(this.Splash_Load);
+            this.Shown += new System.EventHandler(this.Splash_Shown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace PewClient
 {
-    class Prefs
+    public class Prefs
     {
         public string UserName = string.Empty;
         public string Password = string.Empty;

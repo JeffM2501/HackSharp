@@ -88,7 +88,7 @@
             this.Callsign.Location = new System.Drawing.Point(5, 148);
             this.Callsign.Name = "Callsign";
             this.Callsign.Size = new System.Drawing.Size(267, 20);
-            this.Callsign.TabIndex = 5;
+            this.Callsign.TabIndex = 10;
             this.Callsign.TextChanged += new System.EventHandler(this.Callsign_TextChanged);
             // 
             // label2
@@ -105,7 +105,7 @@
             this.CheckName.Location = new System.Drawing.Point(212, 173);
             this.CheckName.Name = "CheckName";
             this.CheckName.Size = new System.Drawing.Size(75, 23);
-            this.CheckName.TabIndex = 6;
+            this.CheckName.TabIndex = 13;
             this.CheckName.Text = "Check";
             this.CheckName.UseVisualStyleBackColor = true;
             this.CheckName.Click += new System.EventHandler(this.CheckName_Click);
@@ -116,7 +116,7 @@
             this.Password1.Name = "Password1";
             this.Password1.PasswordChar = '*';
             this.Password1.Size = new System.Drawing.Size(267, 20);
-            this.Password1.TabIndex = 8;
+            this.Password1.TabIndex = 5;
             this.Password1.TextChanged += new System.EventHandler(this.Password1_TextChanged);
             // 
             // label3
@@ -134,7 +134,7 @@
             this.Password2.Name = "Password2";
             this.Password2.PasswordChar = '*';
             this.Password2.Size = new System.Drawing.Size(267, 20);
-            this.Password2.TabIndex = 10;
+            this.Password2.TabIndex = 8;
             this.Password2.TextChanged += new System.EventHandler(this.Password2_TextChanged);
             // 
             // label4
@@ -155,6 +155,7 @@
             this.Agree.TabIndex = 11;
             this.Agree.Text = "I agree to the";
             this.Agree.UseVisualStyleBackColor = true;
+            this.Agree.CheckedChanged += new System.EventHandler(this.Agree_CheckedChanged);
             // 
             // Terms
             // 
@@ -174,7 +175,7 @@
             this.ErrorLabel.Location = new System.Drawing.Point(5, 216);
             this.ErrorLabel.Name = "ErrorLabel";
             this.ErrorLabel.Size = new System.Drawing.Size(46, 13);
-            this.ErrorLabel.TabIndex = 13;
+            this.ErrorLabel.TabIndex = 14;
             this.ErrorLabel.Text = "ERROR";
             // 
             // Register
