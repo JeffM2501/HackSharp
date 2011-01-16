@@ -44,14 +44,14 @@ else if ($action=="add")
 	$pass2 = GetRequest("pass2");
 	
 	$names = DBQuery($db,"SELECT UID FROM Users WHERE Name='$name'");
-	if ($names !== FALSE)
+	if ($names != FALSE)
 	{
 		echo "BAD NAME";
 		exit;
 	}
 
 	$emails = DBQuery($db,"SELECT UID FROM Users WHERE Email='$email'");
-	if ($emails !== FALSE)
+	if ($emails != FALSE)
 	{
 		echo "BAD EMAIL";
 		exit;
@@ -66,9 +66,9 @@ else if ($action=="add")
 	$hash = mysql_real_escape_string(md5($pass1));
 	$authkey = rand();
 		
-	if (!DBSet("INSERT INTO Users (Email, Name, PassHash, Verified, AuthKey) VALUES($email, $name, $hash, 0, $authkey)"))
+	if (!DBSet("INSERT INTO Users (Email, Name, PassHash, Verified, AuthKey) VALUES('$email', '$name', '$hash', 0, $authkey)"))
 	{
-		echo "BAD INTERNAL";
+		echo "BAD INTERNAL " . mysql_error();
 		exit;
 	}
 	else
