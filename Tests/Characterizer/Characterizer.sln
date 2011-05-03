@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Characterizer", "Characterizer.csproj", "{BB5C019D-488C-4978-9576-913A45D7F9B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renderer", "..\..\Components\Renderer\Renderer.csproj", "{3320A147-244A-4710-90FB-A20671FEDE59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textures", "..\..\Components\Textures\Textures.csproj", "{8AFCDAAF-5B7F-4955-B27A-224EAA8EEABA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "..\..\Components\Resources\Resources.csproj", "{3591CC04-B4FE-4671-B948-9A11E29FB126}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB5C019D-488C-4978-9576-913A45D7F9B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB5C019D-488C-4978-9576-913A45D7F9B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB5C019D-488C-4978-9576-913A45D7F9B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB5C019D-488C-4978-9576-913A45D7F9B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3320A147-244A-4710-90FB-A20671FEDE59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3320A147-244A-4710-90FB-A20671FEDE59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3320A147-244A-4710-90FB-A20671FEDE59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3320A147-244A-4710-90FB-A20671FEDE59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AFCDAAF-5B7F-4955-B27A-224EAA8EEABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AFCDAAF-5B7F-4955-B27A-224EAA8EEABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AFCDAAF-5B7F-4955-B27A-224EAA8EEABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AFCDAAF-5B7F-4955-B27A-224EAA8EEABA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3591CC04-B4FE-4671-B948-9A11E29FB126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3591CC04-B4FE-4671-B948-9A11E29FB126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3591CC04-B4FE-4671-B948-9A11E29FB126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3591CC04-B4FE-4671-B948-9A11E29FB126}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
