@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Host.World
+{
+    public class Transition
+    {
+        public string ID = string.Empty;
+        public string Name = string.Empty;
+
+        public string Description = string.Empty;
+
+        public List<string> Destinations = new List<string>();
+    }
+}
